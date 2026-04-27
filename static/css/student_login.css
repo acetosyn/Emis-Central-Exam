@@ -4,20 +4,21 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #172238;
+    background-color: #eef3f9;
     margin: 0;
     padding: 0;
+    color: #1d2b3a;
 }
 
 /* Basic */
 
 a {
-    color: #3CF;
+    color: #2563eb;
     text-decoration: none;
 }
 
 a:hover {
-    color: #FC3;
+    color: #f5a425;
     text-decoration: none;
 }
 
@@ -28,8 +29,8 @@ ul {
 }
 
 p {
-    font-size: 13px;
-    line-height: 22px;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 /* Header */
@@ -43,7 +44,7 @@ a.menu-link {
         float: right;
         display: block;
         font-size: 36px;
-        color: #fff;
+        color: #ffffff;
         padding-right: 30px;
         padding-top: 15px;
     }
@@ -70,16 +71,16 @@ a.menu-link {
         position: relative;
         margin: 0;
         padding: 0;
-        border-top: 1px solid rgba(250, 250, 250, 0.25);
-        background-color: rgba(22, 34, 57, 0.99);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        background-color: rgba(22, 34, 57, 0.98);
     }
 
     nav[role="navigation"] li a {
         display: block;
         padding: 15px 0;
-        border-bottom: 1px solid rgba(250, 250, 250, 0.25);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
         text-align: center;
-        color: #fff;
+        color: #ffffff;
         font-size: 13px;
         text-transform: uppercase;
         font-weight: 700;
@@ -93,12 +94,13 @@ a.menu-link {
 }
 
 .main-header {
-    background-color: rgba(22, 34, 57, 0.95);
+    background-color: rgba(22, 34, 57, 0.96);
     height: 80px;
     position: fixed;
     z-index: 1000;
     width: 100%;
     top: 0;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
 }
 
 .main-header .logo {
@@ -111,7 +113,7 @@ a.menu-link {
     font-size: 36px;
     text-transform: uppercase;
     font-weight: 800;
-    color: #fff;
+    color: #ffffff;
 }
 
 .main-header .logo a em {
@@ -141,9 +143,9 @@ a.menu-link {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 700;
-    color: #fff;
+    color: #ffffff;
     border: 2px solid transparent;
-    transition: all 0.5s;
+    transition: all 0.35s;
 }
 
 .main-nav li:hover a,
@@ -155,7 +157,7 @@ a.menu-link {
     .main-nav li:hover a,
     .main-nav li.active a {
         border: 2px solid transparent;
-        border-bottom: 1px solid rgba(250, 250, 250, 0.25);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18);
     }
 }
 
@@ -194,7 +196,9 @@ a.menu-link {
 .student-login-section {
     position: relative;
     min-height: 100vh;
-    background-image: url("../images/contact-bg.jpg");
+    background:
+        linear-gradient(rgba(245, 248, 252, 0.80), rgba(237, 243, 249, 0.88)),
+        url("../images/contact-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -206,7 +210,7 @@ a.menu-link {
 .student-login-overlay {
     position: absolute;
     inset: 0;
-    background-color: rgba(22, 34, 57, 0.88);
+    background: linear-gradient(135deg, rgba(255,255,255,0.40), rgba(227,236,247,0.45));
     z-index: 1;
 }
 
@@ -218,7 +222,7 @@ a.menu-link {
 /* Left Side */
 
 .login-side-content {
-    color: #fff;
+    color: #18304b;
     padding-right: 30px;
 }
 
@@ -227,7 +231,7 @@ a.menu-link {
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #f5a425;
+    color: #c98509;
     letter-spacing: 1px;
     margin-bottom: 18px;
 }
@@ -235,10 +239,10 @@ a.menu-link {
 .login-side-content h1 {
     font-size: 54px;
     font-weight: 800;
-    color: #fff;
-    letter-spacing: 1px;
+    color: #13283f;
+    letter-spacing: 0.5px;
     line-height: 1.1;
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 }
 
 .login-side-content h1 em {
@@ -247,7 +251,7 @@ a.menu-link {
 }
 
 .login-side-content p {
-    color: #fff;
+    color: #43556d;
     font-size: 15px;
     line-height: 28px;
     margin-bottom: 0;
@@ -255,13 +259,17 @@ a.menu-link {
 
 .login-info-card {
     margin-top: 35px;
-    background-color: rgba(250, 250, 250, 0.1);
-    padding: 30px;
-    border-left: 4px solid #f5a425;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(196, 211, 228, 0.9);
+    padding: 28px;
+    border-left: 5px solid #f5a425;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(23, 41, 64, 0.08);
+    backdrop-filter: blur(5px);
 }
 
 .login-info-card h5 {
-    color: #fff;
+    color: #162c45;
     font-size: 18px;
     font-weight: 700;
     margin-bottom: 18px;
@@ -270,7 +278,7 @@ a.menu-link {
 }
 
 .login-info-card ul li {
-    color: #fff;
+    color: #31465f;
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 12px;
@@ -284,11 +292,14 @@ a.menu-link {
 /* Login Card */
 
 .student-login-card {
-    background-color: rgba(250, 250, 250, 0.1);
-    padding: 45px 35px;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 42px 34px;
     width: 100%;
-    border-top: 4px solid #f5a425;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    border-top: 5px solid #f5a425;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px rgba(20, 37, 60, 0.12);
+    border: 1px solid rgba(206, 218, 232, 0.95);
+    backdrop-filter: blur(6px);
 }
 
 .login-card-top {
@@ -297,7 +308,7 @@ a.menu-link {
 }
 
 .login-card-top h3 {
-    color: #fff;
+    color: #14263d;
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 10px;
@@ -306,7 +317,7 @@ a.menu-link {
 }
 
 .login-card-top p {
-    color: rgba(255, 255, 255, 0.9);
+    color: #5c6d84;
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 0;
@@ -314,8 +325,9 @@ a.menu-link {
 
 .login-alert {
     font-size: 13px;
-    border-radius: 0;
+    border-radius: 12px;
     margin-bottom: 20px;
+    border: none;
 }
 
 /* Form */
@@ -325,7 +337,7 @@ a.menu-link {
 }
 
 .student-login-form label {
-    color: #fff;
+    color: #1a314b;
     font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
@@ -335,8 +347,8 @@ a.menu-link {
 }
 
 .login-input-group .input-group-text {
-    background-color: rgba(250, 250, 250, 0.12);
-    border: none;
+    background-color: #edf3fa;
+    border: 1px solid #d7e2ef;
     color: #f5a425;
     border-radius: 0;
     min-width: 48px;
@@ -345,33 +357,34 @@ a.menu-link {
 
 .login-input-group .form-control {
     width: 100%;
-    height: 48px;
-    background-color: rgba(250, 250, 250, 0.1);
+    height: 50px;
+    background-color: #ffffff;
     border-radius: 0;
-    border: none;
+    border: 1px solid #d7e2ef;
     outline: none;
-    color: #fff;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    color: #17304b;
+    font-size: 14px;
+    letter-spacing: 0.3px;
     box-shadow: none;
 }
 
 .login-input-group .form-control:focus {
     outline: none;
-    border: none;
     box-shadow: none;
-    color: #fff;
-    background-color: rgba(250, 250, 250, 0.12);
+    color: #17304b;
+    background-color: #ffffff;
+    border-color: #9dc0f7;
 }
 
 .login-input-group .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.75);
+    color: #8393a9;
 }
 
 .password-toggle-btn {
-    border: none;
+    border: 1px solid #d7e2ef;
+    border-left: none;
     border-radius: 0;
-    background-color: rgba(250, 250, 250, 0.12);
+    background-color: #edf3fa;
     color: #f5a425;
     cursor: pointer;
     outline: none;
@@ -380,33 +393,33 @@ a.menu-link {
 
 .password-toggle-btn:hover,
 .password-toggle-btn:focus {
-    color: #fff;
-    background-color: rgba(250, 250, 250, 0.18);
+    color: #1c4fa3;
+    background-color: #e4edf8;
     outline: none;
     box-shadow: none;
 }
 
 .login-btn {
     background-color: #f5a425;
-    color: #fff;
+    color: #ffffff;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-weight: 700;
-    padding: 14px 20px;
+    padding: 15px 20px;
     display: inline-block;
     outline: none;
     box-shadow: none;
     border: none;
-    border-radius: 0;
+    border-radius: 12px;
     margin-top: 8px;
     transition: all 0.3s ease;
 }
 
 .login-btn:hover,
 .login-btn:focus {
-    background-color: #d99118;
-    color: #fff;
+    background-color: #dc9215;
+    color: #ffffff;
     outline: none;
     box-shadow: none;
 }
@@ -417,18 +430,18 @@ a.menu-link {
 }
 
 .login-help-text p {
-    color: #fff;
+    color: #576a83;
     font-size: 13px;
     margin-bottom: 0;
 }
 
 .login-help-text a {
-    color: #f5a425;
+    color: #1f63d1;
     font-weight: 700;
 }
 
 .login-help-text a:hover {
-    color: #fff;
+    color: #f5a425;
 }
 
 /* Responsive */
@@ -441,6 +454,15 @@ a.menu-link {
 
     .student-login-card {
         padding: 35px 25px;
+    }
+
+    .login-side-content {
+        padding-right: 0;
+        margin-bottom: 35px;
+    }
+
+    .login-side-content h1 {
+        font-size: 42px;
     }
 }
 
@@ -456,6 +478,14 @@ a.menu-link {
 
     .student-login-card {
         padding: 28px 18px;
+    }
+
+    .login-side-content h1 {
+        font-size: 34px;
+    }
+
+    .login-info-card {
+        padding: 22px 18px;
     }
 }
 
@@ -475,5 +505,9 @@ a.menu-link {
 
     .login-card-top h3 {
         font-size: 22px;
+    }
+
+    .login-side-content h1 {
+        font-size: 29px;
     }
 }

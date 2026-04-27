@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | EMIS Central Exam</title>
+
+  <meta name="student-name" content="{{ student.first_name }} {{ student.last_name }}">
+  <meta name="student-admission" content="{{ student.admission_number }}">
+  <meta name="student-class" content="{{ student.class }}">
+  <meta name="student-class-category" content="{{ student.class_category }}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+
+  <div class="dashboard-shell">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="dashboard-header-left">
+        <a href="{{ url_for('main.home') }}" class="dashboard-brand">
+          <img src="{{ url_for('static', filename='images/emis3.PNG') }}" alt="EMIS Logo" class="dashboard-brand-logo">
+          <span class="dashboard-brand-text">
+            <strong>EMIS</strong> Central Exam
+          </span>
+        </a>
+      </div>
+
+      <div class="dashboard-header-right">
+        <div class="dashboard-clock-wrap" aria-label="Current time">
+          <i class="fa-regular fa-clock"></i>
+          <span id="liveClock">--:--:--</span>
+        </div>
+
+        <a href="{{ url_for('student_auth.logout') }}" class="dashboard-logout-btn" title="Logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- Main -->
+    <main class="dashboard-main">
+      <!-- Welcome / Hero -->
+      <section class="dashboard-hero">
+        <div class="dashboard-hero-content">
+          <span class="hero-badge">Student Dashboard</span>
+          <h1>
+            Welcome,
+            <span>{{ student.first_name }} {{ student.last_name }}</span>
+          </h1>
+          <p>
+            Review your details, check your exam readiness, and proceed to your examination environment from this dashboard.
+          </p>
+        </div>
+
+        <div class="dashboard-hero-actions">
+          <a href="#" class="hero-action primary-action">
+            <i class="fa-solid fa-pen-to-square"></i>
+            <span>Proceed to Exam</span>
+          </a>
+          <a href="#" class="hero-action secondary-action">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>Read Instructions</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Summary Cards -->
+      <section class="dashboard-summary-grid">
+        <article class="summary-card">
+          <div class="summary-icon blue">
+            <i class="fa-solid fa-id-card"></i>
+          </div>
+          <div class="summary-text">
+            <span>Admission Number</span>
+            <strong>{{ student.admission_number }}</strong>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-icon gold">
+            <i class="fa-solid fa-school"></i>
+          </div>
+          <div class="summary-text">
+            <span>Class</span>
+            <strong>{{ student.class }}</strong>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-icon green">
+            <i class="fa-solid fa-layer-group"></i>
+          </div>
+          <div class="summary-text">
+            <span>Category</span>
+            <strong>{{ student.class_category }}</strong>
+          </div>
+        </article>
+
+        <article class="summary-card">
+          <div class="summary-icon red">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div class="summary-text">
+            <span>Status</span>
+            <strong>Ready</strong>
+          </div>
+        </article>
+      </section>
+
+      <!-- Main Grid -->
+      <section class="dashboard-grid">
+        <!-- Student Details -->
+        <article class="dashboard-card profile-card">
+          <div class="card-head">
+            <h2><i class="fa-solid fa-user-graduate"></i> Candidate Details</h2>
+          </div>
+
+          <div class="candidate-profile">
+            <div class="candidate-avatar">
+              <i class="fa-solid fa-user"></i>
+            </div>
+
+            <div class="candidate-name-block">
+              <h3>{{ student.first_name }} {{ student.last_name }}</h3>
+              <p>EMIS Student Candidate</p>
+            </div>
+          </div>
+
+          <div class="details-grid">
+            <div class="detail-item">
+              <span>Admission Number</span>
+              <strong>{{ student.admission_number }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Last Name</span>
+              <strong>{{ student.last_name }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>First Name</span>
+              <strong>{{ student.first_name }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Other Names</span>
+              <strong>{{ student.other_names if student.other_names else '—' }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Phone</span>
+              <strong>{{ student.phone if student.phone else '—' }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Class</span>
+              <strong>{{ student.class }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Class Category</span>
+              <strong>{{ student.class_category }}</strong>
+            </div>
+
+            <div class="detail-item">
+              <span>Portal Status</span>
+              <strong>Active</strong>
+            </div>
+          </div>
+
+
+             <!-- Support / Help -->
+        <article class="dashboard-card support-card">
+          <div class="card-head">
+            <h2><i class="fa-solid fa-headset"></i> Help & Support</h2>
+          </div>
+
+          <div class="support-content">
+            <p>
+              If you are experiencing difficulty accessing your exam, kindly contact the school ICT/admin support team immediately before your session begins.
+            </p>
+
+            <div class="support-boxes">
+              <div class="support-box">
+                <span class="support-label">Portal</span>
+                <strong>EMIS Central Exam</strong>
+              </div>
+              <div class="support-box">
+                <span class="support-label">Support Status</span>
+                <strong>Available</strong>
+              </div>
+            </div>
+
+            <a href="{{ url_for('main.home') }}" class="card-btn card-btn-outline">
+              <i class="fa-solid fa-arrow-left"></i>
+              Return to Portal Home
+            </a>
+          </div>
+        </article>
+
+
+
+
+
+        </article>
+
+        <!-- Exam Overview -->
+        <article class="dashboard-card exam-card">
+          <div class="card-head">
+            <h2><i class="fa-solid fa-file-lines"></i> Exam Overview</h2>
+          </div>
+
+          <div class="overview-list">
+            <div class="overview-row">
+              <span>Exam Mode</span>
+              <strong>Computer Based Test</strong>
+            </div>
+            <div class="overview-row">
+              <span>Access Type</span>
+              <strong>Portal Login</strong>
+            </div>
+            <div class="overview-row">
+              <span>Availability</span>
+              <strong>Open</strong>
+            </div>
+            <div class="overview-row">
+              <span>Candidate Status</span>
+              <strong>Eligible</strong>
+            </div>
+          </div>
+
+          <div class="exam-status-banner">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Your account is ready for examination access.</span>
+          </div>
+
+          <div class="exam-card-actions">
+            <a href="#" class="card-btn card-btn-primary">
+              <i class="fa-solid fa-play"></i>
+              Proceed to Exam
+            </a>
+            <a href="#" class="card-btn card-btn-light">
+              <i class="fa-solid fa-book-open"></i>
+              View Instructions
+            </a>
+          </div>
+        </article>
+
+        <!-- Instructions -->
+        <article class="dashboard-card instruction-card">
+          <div class="card-head">
+            <h2><i class="fa-solid fa-circle-info"></i> Exam Instructions</h2>
+          </div>
+
+          <ul class="instruction-list">
+            <li>
+              <i class="fa-solid fa-check"></i>
+              <span>Read each question carefully before selecting your answer.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              <span>Ensure your internet connection is stable before starting.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              <span>Do not leave the exam page unless instructed by your supervisor.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              <span>Use a supported browser for the best exam experience.</span>
+            </li>
+            <li>
+              <i class="fa-solid fa-check"></i>
+              <span>Make sure you are properly seated and ready before proceeding.</span>
+            </li>
+          </ul>
+        </article>
+
+     
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
