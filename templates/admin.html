@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="EMIS Central Exam Admin Console">
+  <meta name="author" content="EMIS">
+
+  <title>EMIS Admin Console</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+  >
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+
+<body>
+
+<div class="admin-app">
+
+  <!-- Sidebar -->
+  <aside class="admin-sidebar" id="adminSidebar">
+
+    <div class="admin-sidebar-brand">
+      <a href="{{ url_for('main.home') }}">
+        <img src="{{ url_for('static', filename='images/emis3.png') }}" alt="EMIS Logo">
+        <span>EMIS</span>
+      </a>
+    </div>
+
+    <div class="admin-sidebar-title">
+      <span>Exam Control Server</span>
+    </div>
+
+    <nav class="admin-sidebar-nav">
+      <a href="#dashboard" class="admin-nav-link active">
+        <i class="fa fa-dashboard"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a href="#upload-exams" class="admin-nav-link">
+        <i class="fa fa-upload"></i>
+        <span>Push Exam JSON</span>
+      </a>
+
+      <a href="#results-overview" class="admin-nav-link">
+        <i class="fa fa-bar-chart"></i>
+        <span>Results Overview</span>
+      </a>
+
+      <a href="#class-results" class="admin-nav-link">
+        <i class="fa fa-list-alt"></i>
+        <span>Class Results</span>
+      </a>
+
+      <a href="#student-records" class="admin-nav-link">
+        <i class="fa fa-users"></i>
+        <span>Student Records</span>
+      </a>
+
+      <a href="#exam-control" class="admin-nav-link">
+        <i class="fa fa-toggle-on"></i>
+        <span>Exam Control</span>
+      </a>
+
+      <a href="#activity-logs" class="admin-nav-link">
+        <i class="fa fa-bell"></i>
+        <span>Activity Logs</span>
+      </a>
+
+      <a href="#system-settings" class="admin-nav-link">
+        <i class="fa fa-cog"></i>
+        <span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="admin-sidebar-footer">
+      <a href="{{ url_for('admin_auth.admin_logout') }}" class="admin-logout-link">
+        <i class="fa fa-sign-out"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+
+  </aside>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+
+    <!-- Topbar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-left">
+        <button type="button" class="admin-menu-btn" id="adminMenuBtn">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <div>
+          <h1>Admin Console</h1>
+          <p>Manage exams, JSON subjects, results, and class access.</p>
+        </div>
+      </div>
+
+      <div class="admin-topbar-right">
+        <button type="button" class="admin-refresh-btn" id="refreshAdminDashboard">
+          <i class="fa fa-refresh"></i>
+          Refresh
+        </button>
+
+        <a href="{{ url_for('admin_auth.admin_logout') }}" class="admin-topbar-logout">
+          <i class="fa fa-sign-out"></i>
+          Logout
+        </a>
+      </div>
+    </header>
+
+    <!-- Dashboard -->
+    <section class="admin-section" id="dashboard">
+
+      <div class="admin-welcome-card">
+        <div>
+          <span class="admin-section-tag">Welcome Back</span>
+          <h2>EMIS Central Exam Server</h2>
+          <p>
+            This control center allows authorized administrators and teachers to upload exam JSON files,
+            assign subjects to classes, manage results, and monitor examination activities.
+          </p>
+        </div>
+
+        <div class="admin-welcome-icon">
+          <i class="fa fa-shield"></i>
+        </div>
+      </div>
+
+      <div class="admin-stats-grid">
+
+        <div class="admin-stat-card stat-blue">
+          <div class="admin-stat-icon">
+            <i class="fa fa-users"></i>
+          </div>
+
+          <div>
+            <p>Total Students</p>
+            <h3 id="statTotalStudents">0</h3>
+            <span>Across JSS1 - SS3</span>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-gold">
+          <div class="admin-stat-icon">
+            <i class="fa fa-book"></i>
+          </div>
+
+          <div>
+            <p>Uploaded Subjects</p>
+            <h3 id="statUploadedSubjects">0</h3>
+            <span>JSON exam files</span>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-green">
+          <div class="admin-stat-icon">
+            <i class="fa fa-check-circle"></i>
+          </div>
+
+          <div>
+            <p>Active Exams</p>
+            <h3 id="statActiveExams">0</h3>
+            <span>Currently open</span>
+          </div>
+        </div>
+
+        <div class="admin-stat-card stat-red">
+          <div class="admin-stat-icon">
+            <i class="fa fa-line-chart"></i>
+          </div>
+
+          <div>
+            <p>Results Submitted</p>
+            <h3 id="statResultsSubmitted">0</h3>
+            <span>Recorded attempts</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="admin-quick-actions-card">
+        <div class="admin-card-heading">
+          <div>
+            <span class="admin-section-tag">Quick Actions</span>
+            <h3>Common Admin Tasks</h3>
+          </div>
+        </div>
+
+        <div class="admin-quick-actions-grid">
+
+          <a href="#upload-exams" class="admin-action-btn">
+            <i class="fa fa-upload"></i>
+            <span>Upload Exam JSON</span>
+          </a>
+
+          <a href="#results-overview" class="admin-action-btn">
+            <i class="fa fa-bar-chart"></i>
+            <span>View Results</span>
+          </a>
+
+          <a href="#class-results" class="admin-action-btn">
+            <i class="fa fa-list"></i>
+            <span>Filter by Class</span>
+          </a>
+
+          <a href="#exam-control" class="admin-action-btn">
+            <i class="fa fa-toggle-on"></i>
+            <span>Open / Close Exam</span>
+          </a>
+
+          <a href="#student-records" class="admin-action-btn">
+            <i class="fa fa-users"></i>
+            <span>Student Records</span>
+          </a>
+
+          <a href="#activity-logs" class="admin-action-btn">
+            <i class="fa fa-bell"></i>
+            <span>View Logs</span>
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Push Exam JSON -->
+    <section class="admin-section" id="upload-exams">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Teacher Friendly Upload</span>
+          <h2>Push Exam JSON to Class Portal</h2>
+          <p>
+            Upload converted subject JSON files and assign them to the correct class.
+            Example: <strong>maths_jss1.json</strong> can be pushed to <strong>JSS1</strong>.
+          </p>
+        </div>
+      </div>
+
+      <div class="admin-grid-2">
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>Upload Subject JSON</h3>
+              <p>Select the class, subject, exam type, and upload the JSON file.</p>
+            </div>
+          </div>
+
+          <form class="admin-form" id="examJsonUploadForm" method="POST" action="#" enctype="multipart/form-data">
+
+            <div class="form-group">
+              <label for="examClass">Target Class</label>
+              <select id="examClass" name="exam_class" class="form-control admin-input" required>
+                <option value="">Select Class</option>
+                <option value="JSS1">JSS1</option>
+                <option value="JSS2">JSS2</option>
+                <option value="JSS3">JSS3</option>
+                <option value="SS1">SS1</option>
+                <option value="SS2">SS2</option>
+                <option value="SS3">SS3</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="examSubject">Subject</label>
+              <select id="examSubject" name="exam_subject" class="form-control admin-input" required>
+                <option value="">Select Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English Language">English Language</option>
+                <option value="Basic Science">Basic Science</option>
+                <option value="Basic Technology">Basic Technology</option>
+                <option value="Civic Education">Civic Education</option>
+                <option value="Islamic Studies">Islamic Studies</option>
+                <option value="Biology">Biology</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Physics">Physics</option>
+                <option value="Economics">Economics</option>
+                <option value="Government">Government</option>
+                <option value="Financial Accounting">Financial Accounting</option>
+                <option value="Literature-in-English">Literature-in-English</option>
+                <option value="Computer Studies">Computer Studies</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="examType">Exam Type</label>
+              <select id="examType" name="exam_type" class="form-control admin-input" required>
+                <option value="">Select Exam Type</option>
+                <option value="Mid Term">Mid Term</option>
+                <option value="End of Term">End of Term</option>
+                <option value="Mock Exam">Mock Exam</option>
+                <option value="Practice Test">Practice Test</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="examDuration">Duration</label>
+              <select id="examDuration" name="exam_duration" class="form-control admin-input" required>
+                <option value="">Select Duration</option>
+                <option value="20">20 Minutes</option>
+                <option value="30">30 Minutes</option>
+                <option value="45">45 Minutes</option>
+                <option value="60">1 Hour</option>
+                <option value="90">1 Hour 30 Minutes</option>
+                <option value="120">2 Hours</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="examJsonFile">Exam JSON File</label>
+
+              <div class="admin-file-drop" id="examJsonDropBox">
+                <input type="file" id="examJsonFile" name="exam_json_file" accept=".json" hidden required>
+
+                <div class="admin-file-icon">
+                  <i class="fa fa-file-code-o"></i>
+                </div>
+
+                <h4>Choose or Drop JSON File</h4>
+                <p>Only valid .json exam files are allowed.</p>
+
+                <button type="button" class="admin-secondary-btn" id="chooseExamJsonBtn">
+                  <i class="fa fa-folder-open"></i>
+                  Choose File
+                </button>
+
+                <div class="admin-selected-file" id="examJsonFileName">
+                  No file selected
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="examInstruction">Exam Instruction</label>
+              <textarea
+                id="examInstruction"
+                name="exam_instruction"
+                class="form-control admin-input"
+                rows="4"
+                placeholder="Example: Answer all questions. Ensure you submit before the timer ends."></textarea>
+            </div>
+
+            <button type="submit" class="admin-primary-btn" id="pushExamJsonBtn">
+              <span class="admin-btn-text">Push JSON to Class</span>
+              <span class="admin-btn-spinner"></span>
+            </button>
+
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>Uploaded Exam Subjects</h3>
+              <p>Recently pushed JSON subjects will appear here.</p>
+            </div>
+
+            <button type="button" class="admin-small-btn" id="refreshUploadedSubjects">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Subject</th>
+                  <th>File</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+
+              <tbody id="uploadedSubjectsTable">
+                <tr>
+                  <td colspan="4" class="admin-empty-table">
+                    No subject JSON uploaded yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="admin-note-box">
+            <h4><i class="fa fa-info-circle"></i> How it works</h4>
+            <p>
+              When a JSON file is pushed to a class, students in that class will see the subject
+              on their exam page. Once selected, the student will be routed directly into that subject exam.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Results Overview -->
+    <section class="admin-section" id="results-overview">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Result Center</span>
+          <h2>Results Overview</h2>
+          <p>View submitted exams, student scores, and subject performance summaries.</p>
+        </div>
+      </div>
+
+      <div class="admin-filter-card">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <label for="resultClassFilter">Class</label>
+            <select id="resultClassFilter" class="form-control admin-input">
+              <option value="">All Classes</option>
+              <option value="JSS1">JSS1</option>
+              <option value="JSS2">JSS2</option>
+              <option value="JSS3">JSS3</option>
+              <option value="SS1">SS1</option>
+              <option value="SS2">SS2</option>
+              <option value="SS3">SS3</option>
+            </select>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <label for="resultSubjectFilter">Subject</label>
+            <select id="resultSubjectFilter" class="form-control admin-input">
+              <option value="">All Subjects</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="English Language">English Language</option>
+              <option value="Biology">Biology</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Physics">Physics</option>
+              <option value="Financial Accounting">Financial Accounting</option>
+              <option value="Literature-in-English">Literature-in-English</option>
+            </select>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3">
+            <label for="resultDateFilter">Date</label>
+            <input type="date" id="resultDateFilter" class="form-control admin-input">
+          </div>
+
+          <div class="col-lg-3 col-md-6 mb-3 d-flex align-items-end">
+            <button type="button" class="admin-primary-btn admin-filter-btn" id="applyResultFilter">
+              <i class="fa fa-search"></i>
+              Apply Filter
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-heading">
+          <div>
+            <h3>Submitted Results</h3>
+            <p>Latest recorded results from student exams.</p>
+          </div>
+
+          <div class="admin-card-actions">
+            <button type="button" class="admin-secondary-btn" id="exportResultsCsv">
+              <i class="fa fa-download"></i>
+              Export CSV
+            </button>
+
+            <button type="button" class="admin-secondary-btn" id="printResults">
+              <i class="fa fa-print"></i>
+              Print
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Admission No.</th>
+                <th>Student Name</th>
+                <th>Class</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Status</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+
+            <tbody id="resultsOverviewTable">
+              <tr>
+                <td colspan="7" class="admin-empty-table">
+                  No results submitted yet.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Class Results -->
+    <section class="admin-section" id="class-results">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Class Based Results</span>
+          <h2>Results by Class</h2>
+          <p>Select a class to view performance summaries and export class-specific results.</p>
+        </div>
+      </div>
+
+      <div class="admin-class-grid">
+
+        <button type="button" class="admin-class-card" data-class="JSS1">
+          <span>JSS1</span>
+          <small>Junior Secondary 1</small>
+        </button>
+
+        <button type="button" class="admin-class-card" data-class="JSS2">
+          <span>JSS2</span>
+          <small>Junior Secondary 2</small>
+        </button>
+
+        <button type="button" class="admin-class-card" data-class="JSS3">
+          <span>JSS3</span>
+          <small>Junior Secondary 3</small>
+        </button>
+
+        <button type="button" class="admin-class-card" data-class="SS1">
+          <span>SS1</span>
+          <small>Senior Secondary 1</small>
+        </button>
+
+        <button type="button" class="admin-class-card" data-class="SS2">
+          <span>SS2</span>
+          <small>Senior Secondary 2</small>
+        </button>
+
+        <button type="button" class="admin-class-card" data-class="SS3">
+          <span>SS3</span>
+          <small>Senior Secondary 3</small>
+        </button>
+
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-heading">
+          <div>
+            <h3 id="selectedClassResultTitle">Select a Class</h3>
+            <p id="selectedClassResultText">Choose a class above to view its result summary.</p>
+          </div>
+
+          <div class="admin-card-actions">
+            <button type="button" class="admin-secondary-btn" id="downloadClassResults">
+              <i class="fa fa-download"></i>
+              Download Class Results
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-result-summary-grid">
+
+          <div class="admin-mini-stat">
+            <p>Total Attempts</p>
+            <h4 id="classTotalAttempts">0</h4>
+          </div>
+
+          <div class="admin-mini-stat">
+            <p>Average Score</p>
+            <h4 id="classAverageScore">--</h4>
+          </div>
+
+          <div class="admin-mini-stat">
+            <p>Highest Score</p>
+            <h4 id="classHighestScore">--</h4>
+          </div>
+
+          <div class="admin-mini-stat">
+            <p>Lowest Score</p>
+            <h4 id="classLowestScore">--</h4>
+          </div>
+
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Admission No.</th>
+                <th>Name</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Time Taken</th>
+                <th>Submitted At</th>
+              </tr>
+            </thead>
+
+            <tbody id="classResultsTable">
+              <tr>
+                <td colspan="6" class="admin-empty-table">
+                  No class selected.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Student Records -->
+    <section class="admin-section" id="student-records">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Student Database</span>
+          <h2>Student Records</h2>
+          <p>View students by class and confirm login records such as admission number and last name.</p>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <div class="admin-card-heading">
+          <div>
+            <h3>Class Student List</h3>
+            <p>Students login with their admission number and last name.</p>
+          </div>
+
+          <div class="admin-card-actions">
+            <select id="studentRecordClass" class="form-control admin-input admin-small-select">
+              <option value="">Select Class</option>
+              <option value="JSS1">JSS1</option>
+              <option value="JSS2">JSS2</option>
+              <option value="JSS3">JSS3</option>
+              <option value="SS1">SS1</option>
+              <option value="SS2">SS2</option>
+              <option value="SS3">SS3</option>
+            </select>
+
+            <button type="button" class="admin-secondary-btn" id="loadStudentRecords">
+              <i class="fa fa-search"></i>
+              Load
+            </button>
+          </div>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Admission No.</th>
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>Other Names</th>
+                <th>Class</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+
+            <tbody id="studentRecordsTable">
+              <tr>
+                <td colspan="6" class="admin-empty-table">
+                  Select a class to load students.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Exam Availability / Control -->
+    <section class="admin-section" id="exam-control">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Exam Availability</span>
+          <h2>Open or Close Class Exams</h2>
+          <p>Control whether a subject is visible and available to students in a class.</p>
+        </div>
+      </div>
+
+      <div class="admin-grid-2">
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>Set Exam Availability</h3>
+              <p>Enable or disable access to a subject exam.</p>
+            </div>
+          </div>
+
+          <form class="admin-form" id="examAvailabilityForm" method="POST" action="#">
+
+            <div class="form-group">
+              <label for="controlClass">Class</label>
+              <select id="controlClass" name="control_class" class="form-control admin-input" required>
+                <option value="">Select Class</option>
+                <option value="JSS1">JSS1</option>
+                <option value="JSS2">JSS2</option>
+                <option value="JSS3">JSS3</option>
+                <option value="SS1">SS1</option>
+                <option value="SS2">SS2</option>
+                <option value="SS3">SS3</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="controlSubject">Subject</label>
+              <select id="controlSubject" name="control_subject" class="form-control admin-input" required>
+                <option value="">Select Subject</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="English Language">English Language</option>
+                <option value="Biology">Biology</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Physics">Physics</option>
+                <option value="Financial Accounting">Financial Accounting</option>
+                <option value="Literature-in-English">Literature-in-English</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="controlStatus">Status</label>
+              <select id="controlStatus" name="control_status" class="form-control admin-input" required>
+                <option value="">Select Status</option>
+                <option value="open">Open Exam</option>
+                <option value="closed">Close Exam</option>
+              </select>
+            </div>
+
+            <button type="submit" class="admin-primary-btn">
+              <i class="fa fa-save"></i>
+              Save Availability
+            </button>
+
+          </form>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>Currently Available Exams</h3>
+              <p>Active subjects visible to students.</p>
+            </div>
+          </div>
+
+          <div class="admin-table-wrap">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Subject</th>
+                  <th>Status</th>
+                  <th>Updated</th>
+                </tr>
+              </thead>
+
+              <tbody id="availableExamsTable">
+                <tr>
+                  <td colspan="4" class="admin-empty-table">
+                    No active exam availability records yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Activity Logs -->
+    <section class="admin-section" id="activity-logs">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">System Logs</span>
+          <h2>Activity Logs & Server Health</h2>
+          <p>Track uploads, result submissions, login activity, and system warnings.</p>
+        </div>
+      </div>
+
+      <div class="admin-grid-2">
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>Recent Activities</h3>
+              <p>System and admin actions will appear here.</p>
+            </div>
+
+            <button type="button" class="admin-small-btn" id="refreshActivityLogs">
+              <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+
+          <div class="admin-log-box" id="activityLogBox">
+            <div class="admin-log-item">
+              <i class="fa fa-info-circle"></i>
+              <span>No activity recorded yet.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-heading">
+            <div>
+              <h3>System Health</h3>
+              <p>Basic server status and readiness checks.</p>
+            </div>
+          </div>
+
+          <div class="admin-health-list">
+
+            <div class="admin-health-item">
+              <span>
+                <i class="fa fa-server"></i>
+                Flask Server
+              </span>
+              <strong class="status-online">Online</strong>
+            </div>
+
+            <div class="admin-health-item">
+              <span>
+                <i class="fa fa-folder-open"></i>
+                JSON Storage
+              </span>
+              <strong class="status-warning">Pending Backend</strong>
+            </div>
+
+            <div class="admin-health-item">
+              <span>
+                <i class="fa fa-database"></i>
+                Results Storage
+              </span>
+              <strong class="status-warning">Pending Backend</strong>
+            </div>
+
+            <div class="admin-health-item">
+              <span>
+                <i class="fa fa-lock"></i>
+                Admin Session
+              </span>
+              <strong class="status-online">Protected</strong>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Settings -->
+    <section class="admin-section" id="system-settings">
+
+      <div class="admin-section-header">
+        <div>
+          <span class="admin-section-tag">Configuration</span>
+          <h2>System Settings</h2>
+          <p>Basic settings for the examination server and admin display.</p>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <form class="admin-form" id="adminSettingsForm" method="POST" action="#">
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="institutionName">Institution Name</label>
+                <input
+                  type="text"
+                  id="institutionName"
+                  name="institution_name"
+                  class="form-control admin-input"
+                  value="Epitome Model Islamic Schools"
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="examSession">Exam Session</label>
+                <input
+                  type="text"
+                  id="examSession"
+                  name="exam_session"
+                  class="form-control admin-input"
+                  placeholder="Example: 2025/2026 Third Term"
+                >
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="serverTimezone">Timezone</label>
+                <select id="serverTimezone" name="server_timezone" class="form-control admin-input">
+                  <option value="Africa/Lagos">Africa/Lagos</option>
+                  <option value="UTC">UTC</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="defaultExamMode">Default Exam Mode</label>
+                <select id="defaultExamMode" name="default_exam_mode" class="form-control admin-input">
+                  <option value="manual">Manual Open/Close</option>
+                  <option value="scheduled">Scheduled</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+
+          <button type="submit" class="admin-primary-btn admin-settings-btn">
+            <i class="fa fa-save"></i>
+            Save Settings
+          </button>
+
+        </form>
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+
+</body>
+</html>

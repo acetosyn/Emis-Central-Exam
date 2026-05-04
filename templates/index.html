@@ -18,31 +18,37 @@
   <!-- Additional CSS Files -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/lightbox.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/flex-slider.css') }}">
 </head>
 
 <body>
+
 <!-- Header -->
 <header class="main-header clearfix" role="header">
   <div class="logo">
     <a href="{{ url_for('main.home') }}">
       <span class="brand-mark">
-        <img src="{{ url_for('static', filename='images/emis3.PNG') }}" alt="EMIS Logo">
+        <img src="{{ url_for('static', filename='images/emis3.png') }}" alt="EMIS Logo">
       </span>
       <span class="brand-text"><em>EMIS</em></span>
     </a>
   </div>
+
   <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
+
   <nav id="menu" class="main-nav" role="navigation">
     <ul class="main-menu">
       <li><a href="#section1">Home</a></li>
+
       <li>
         <a href="{{ url_for('student_auth.student_login') }}" class="external">
           Student Portal
         </a>
       </li>
+
       <li><a href="#section3">Quick Access</a></li>
       <li><a href="#section4">Exam Services</a></li>
       <li><a href="#section6">Contact</a></li>
@@ -50,85 +56,102 @@
   </nav>
 </header>
 
-  <!-- Main Banner -->
-  <section class="section main-banner" id="top" data-section="section1">
-    <video autoplay muted loop id="bg-video">
-      <source src="{{ url_for('static', filename='images/portal.mp4') }}" type="video/mp4">
-    </video>
+<!-- Main Banner -->
+<section class="section main-banner" id="top" data-section="section1">
+  <video autoplay muted loop id="bg-video">
+    <source src="{{ url_for('static', filename='images/portal.mp4') }}" type="video/mp4">
+  </video>
 
-    <div class="video-overlay header-text">
-      <div class="caption">
-        <h6>Epitome Model Islamic Schools</h6>
-        <h2><em>EMIS</em> Central Exam Portal</h2>
-        <div class="main-button">
-          <div class="scroll-to-section">
-            <a href="{{ url_for('student_auth.student_login') }}">Access Portal</a>
+  <div class="video-overlay header-text">
+    <div class="caption">
+      <h6>Epitome Model Islamic Schools</h6>
+      <h2><em>EMIS</em> Central Exam Portal</h2>
+
+      <div class="main-button hero-button-group">
+        <div class="scroll-to-section">
+          <a href="{{ url_for('student_auth.student_login') }}">Access Portal</a>
+        </div>
+
+        <div class="scroll-to-section">
+          <a href="#" class="admin-access-btn" data-toggle="modal" data-target="#adminLoginModal">
+            Admin Console
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-4 col-12">
+        <div class="features-post">
+          <div class="features-content">
+            <div class="content-show">
+              <h4><i class="fa fa-user"></i>Student Exams</h4>
+            </div>
+
+            <div class="content-hide">
+              <p>Students can securely access examinations, log in to their portal, and participate in digital assessments with ease.</p>
+              <p class="hidden-sm">Fast, structured, and accessible online examination experience for EMIS students.</p>
+
+              <div>
+                <a href="{{ url_for('student_auth.student_login') }}">More Info</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Features -->
-  <section class="features">
-    <div class="container">
-      <div class="row">
+      <div class="col-lg-4 col-12">
+        <div class="features-post second-features">
+          <div class="features-content">
+            <div class="content-show">
+              <h4><i class="fa fa-users"></i>Staff Recruitment</h4>
+            </div>
 
-        <div class="col-lg-4 col-12">
-          <div class="features-post">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-user"></i>Student Exams</h4>
-              </div>
-              <div class="content-hide">
-                <p>Students can securely access examinations, log in to their portal, and participate in digital assessments with ease.</p>
-                <p class="hidden-sm">Fast, structured, and accessible online examination experience for EMIS students.</p>
-                <div>
-                  <a href="{{ url_for('student_auth.student_login') }}">More Info</a>
-                </div>
+            <div class="content-hide">
+              <p>Applicants can access recruitment assessments and screening processes through the EMIS central examination platform.</p>
+              <p class="hidden-sm">A streamlined digital process for staff recruitment and evaluation.</p>
+
+              <div>
+                <a href="https://epitome26.pythonanywhere.com/user_login" target="_blank" rel="noopener noreferrer">
+                  Apply Now
+                </a>
               </div>
             </div>
           </div>
         </div>
-
-        <div class="col-lg-4 col-12">
-          <div class="features-post second-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-users"></i>Staff Recruitment</h4>
-              </div>
-              <div class="content-hide">
-                <p>Applicants can access recruitment assessments and screening processes through the EMIS central examination platform.</p>
-                <p class="hidden-sm">A streamlined digital process for staff recruitment and evaluation.</p>
-                <div>
-                  <a href="https://exam.epitomeschools.store/user_login" target="_blank" rel="noopener noreferrer">Apply Now</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-12">
-          <div class="features-post third-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-book"></i>Senior Secondary School Exam Portal</h4>
-              </div>
-              <div class="content-hide">
-                <p>This portal is designed for Senior Secondary School students from SS1 to SS3 to access their examination environment easily.</p>
-                <p class="hidden-sm">A focused portal for SS1, SS2, and SS3 students to participate in exams and academic activities.</p>
-                <div>
-                  <a href="https://examportal-pzr7.onrender.com/student_login" target="_blank" rel="noopener noreferrer">Visit Portal</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
 
+      <div class="col-lg-4 col-12">
+        <div class="features-post third-features">
+          <div class="features-content">
+            <div class="content-show">
+              <h4><i class="fa fa-book"></i>Senior Secondary School Exam Portal</h4>
+            </div>
+
+            <div class="content-hide">
+              <p>This portal is designed for Senior Secondary School students from SS1 to SS3 to access their examination environment easily.</p>
+              <p class="hidden-sm">A focused portal for SS1, SS2, and SS3 students to participate in exams and academic activities.</p>
+
+              <div>
+                <a href="https://examportal-pzr7.onrender.com/student_login" target="_blank" rel="noopener noreferrer">
+                  Visit Portal
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- Quick Access -->
 <section class="section coming-soon" data-section="section3">
@@ -139,6 +162,7 @@
         <div class="continer centerIt">
           <div>
             <h4>Access the <em>EMIS examination environment</em> from one central page</h4>
+
             <div class="counter">
 
               <div class="days">
@@ -175,24 +199,29 @@
           </div>
 
           <div class="quick-access-links">
+
             <a class="quick-link quick-link-primary" href="{{ url_for('student_auth.student_login') }}">
               <span class="quick-link-icon"><i class="fa fa-user"></i></span>
+
               <span class="quick-link-text">
                 <strong>Student Exam Portal</strong>
                 <small>Login for students</small>
               </span>
+
               <span class="quick-link-arrow"><i class="fa fa-angle-right"></i></span>
             </a>
 
             <a class="quick-link quick-link-secondary"
-               href="https://exam.epitomeschools.store/user_login"
+               href="https://epitome26.pythonanywhere.com/user_login"
                target="_blank"
                rel="noopener noreferrer">
               <span class="quick-link-icon"><i class="fa fa-users"></i></span>
+
               <span class="quick-link-text">
                 <strong>Staff Recruitment</strong>
                 <small>Apply and continue assessment</small>
               </span>
+
               <span class="quick-link-arrow"><i class="fa fa-angle-right"></i></span>
             </a>
 
@@ -201,15 +230,29 @@
                target="_blank"
                rel="noopener noreferrer">
               <span class="quick-link-icon"><i class="fa fa-book"></i></span>
+
               <span class="quick-link-text">
                 <strong>SS1–SS3 Exam Portal</strong>
                 <small>Senior Secondary School portal</small>
               </span>
+
+              <span class="quick-link-arrow"><i class="fa fa-angle-right"></i></span>
+            </a>
+
+            <a class="quick-link quick-link-admin" href="#" data-toggle="modal" data-target="#adminLoginModal">
+              <span class="quick-link-icon"><i class="fa fa-lock"></i></span>
+
+              <span class="quick-link-text">
+                <strong>Admin Console</strong>
+                <small>Restricted admin access</small>
+              </span>
+
               <span class="quick-link-arrow"><i class="fa fa-angle-right"></i></span>
             </a>
 
             <div class="quick-link quick-link-muted">
               <span class="quick-link-icon"><i class="fa fa-briefcase"></i></span>
+
               <span class="quick-link-text">
                 <strong>Staff Capacity Building</strong>
                 <small>Coming soon</small>
@@ -218,11 +261,13 @@
 
             <div class="quick-link quick-link-muted">
               <span class="quick-link-icon"><i class="fa fa-home"></i></span>
+
               <span class="quick-link-text">
                 <strong>Parent Login</strong>
                 <small>Coming soon</small>
               </span>
             </div>
+
           </div>
         </div>
       </div>
@@ -231,76 +276,80 @@
   </div>
 </section>
 
+<!-- Why EMIS -->
+<section class="section why-us" data-section="section2">
+  <div class="container">
+    <div class="row">
 
-
-  <!-- Why EMIS -->
-  <section class="section why-us" data-section="section2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Why Choose EMIS Central Exam?</h2>
-          </div>
-        </div>
-
-        <div class="col-md-12">
-          <div id="tabs">
-            <ul>
-              <li><a href="#tabs-1">Reliable Access</a></li>
-              <li><a href="#tabs-2">Structured Exams</a></li>
-              <li><a href="#tabs-3">Future Ready</a></li>
-            </ul>
-
-            <section class="tabs-content">
-              <article id="tabs-1">
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="{{ url_for('static', filename='images/a.JPG') }}" alt="Reliable Access">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Reliable Access</h4>
-                    <p>EMIS Central Exam is designed to provide a smooth and dependable portal for students, applicants, and future academic users. It creates a single access point for digital examination services.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article id="tabs-2">
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="{{ url_for('static', filename='images/choose-us-image-02.png') }}" alt="Structured Exams">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Structured Exams</h4>
-                    <p>The platform supports organized online assessments, recruitment screenings, and educational workflows in a cleaner and more professional digital environment.</p>
-                    <p>It is built to simplify access, improve coordination, and enhance the overall examination experience.</p>
-                  </div>
-                </div>
-              </article>
-
-              <article id="tabs-3">
-                <div class="row">
-                  <div class="col-md-6">
-                    <img src="{{ url_for('static', filename='images/choose-us-image-03.png') }}" alt="Future Ready">
-                  </div>
-                  <div class="col-md-6">
-                    <h4>Future Ready</h4>
-                    <p>This portal is ready to scale into additional modules such as parent login, staff capacity building, result checking, and other academic services required by EMIS.</p>
-                  </div>
-                </div>
-              </article>
-            </section>
-          </div>
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Why Choose EMIS Central Exam?</h2>
         </div>
       </div>
+
+      <div class="col-md-12">
+        <div id="tabs">
+          <ul>
+            <li><a href="#tabs-1">Reliable Access</a></li>
+            <li><a href="#tabs-2">Structured Exams</a></li>
+            <li><a href="#tabs-3">Future Ready</a></li>
+          </ul>
+
+          <section class="tabs-content">
+
+            <article id="tabs-1">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="{{ url_for('static', filename='images/a.jpg') }}" alt="Reliable Access">
+                </div>
+
+                <div class="col-md-6">
+                  <h4>Reliable Access</h4>
+                  <p>EMIS Central Exam is designed to provide a smooth and dependable portal for students, applicants, and future academic users. It creates a single access point for digital examination services.</p>
+                </div>
+              </div>
+            </article>
+
+            <article id="tabs-2">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="{{ url_for('static', filename='images/choose-us-image-02.png') }}" alt="Structured Exams">
+                </div>
+
+                <div class="col-md-6">
+                  <h4>Structured Exams</h4>
+                  <p>The platform supports organized online assessments, recruitment screenings, and educational workflows in a cleaner and more professional digital environment.</p>
+                  <p>It is built to simplify access, improve coordination, and enhance the overall examination experience.</p>
+                </div>
+              </div>
+            </article>
+
+            <article id="tabs-3">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="{{ url_for('static', filename='images/choose-us-image-03.png') }}" alt="Future Ready">
+                </div>
+
+                <div class="col-md-6">
+                  <h4>Future Ready</h4>
+                  <p>This portal is ready to scale into additional modules such as parent login, staff capacity building, result checking, and other academic services required by EMIS.</p>
+                </div>
+              </div>
+            </article>
+
+          </section>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
- 
-
- <!-- Exam Services -->
+<!-- Exam Services -->
 <section class="section courses" data-section="section4">
   <div class="container-fluid">
     <div class="row">
+
       <div class="col-md-12">
         <div class="section-heading">
           <h2>EMIS Exam Services</h2>
@@ -311,12 +360,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/d.jpg') }}" alt="Student Exams">
+
           <div class="down-content">
             <h4>Student Examinations</h4>
             <p>Secure login for students to access their examination environment and assessment instructions.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-01.png') }}" alt="Student Exams">
             </div>
+
             <div class="text-button-free">
               <a href="{{ url_for('student_auth.student_login') }}">
                 Open <i class="fa fa-angle-double-right"></i>
@@ -327,12 +379,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/e.jpg') }}" alt="Staff Recruitment">
+
           <div class="down-content">
             <h4>Staff Recruitment</h4>
             <p>Digital recruitment and assessment access for prospective staff applying through EMIS.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-02.png') }}" alt="Staff Recruitment">
             </div>
+
             <div class="text-button-pay">
               <a href="https://exam.epitomeschools.store/user_login" target="_blank" rel="noopener noreferrer">
                 Apply <i class="fa fa-angle-double-right"></i>
@@ -343,12 +398,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/f.jpg') }}" alt="Senior Secondary School Exam Portal">
+
           <div class="down-content">
             <h4>Senior Secondary School Exam Portal</h4>
             <p>Dedicated portal for SS1 to SS3 students to access examinations and academic activities.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-03.png') }}" alt="Senior Secondary School Exam Portal">
             </div>
+
             <div class="text-button-free">
               <a href="https://examportal-pzr7.onrender.com" target="_blank" rel="noopener noreferrer">
                 Visit <i class="fa fa-angle-double-right"></i>
@@ -359,12 +417,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/g.jpg') }}" alt="Parent Login">
+
           <div class="down-content">
             <h4>Parent Login</h4>
             <p>A planned parent-facing section for viewing student-related academic and examination information.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-04.png') }}" alt="Parent Login">
             </div>
+
             <div class="text-button-free">
               <a href="#">Coming Soon <i class="fa fa-angle-double-right"></i></a>
             </div>
@@ -373,12 +434,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/h.jpg') }}" alt="Result Access">
+
           <div class="down-content">
             <h4>Result Access</h4>
             <p>A scalable foundation for future result checking, records access, and broader academic services.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-05.png') }}" alt="Result Access">
             </div>
+
             <div class="text-button-pay">
               <a href="#">Planned <i class="fa fa-angle-double-right"></i></a>
             </div>
@@ -387,12 +451,15 @@
 
         <div class="item">
           <img src="{{ url_for('static', filename='images/i.jpg') }}" alt="Additional Exam Service">
+
           <div class="down-content">
             <h4>Additional Exam Services</h4>
             <p>More digital academic and examination support services will continue to be integrated into the EMIS portal.</p>
+
             <div class="author-image">
               <img src="{{ url_for('static', filename='images/author-01.png') }}" alt="Additional Exam Service">
             </div>
+
             <div class="text-button-free">
               <a href="#">Explore <i class="fa fa-angle-double-right"></i></a>
             </div>
@@ -400,127 +467,224 @@
         </div>
 
       </div>
+
     </div>
   </div>
 </section>
 
+<!-- Overview -->
+<section class="section video" data-section="section5">
+  <div class="container">
+    <div class="row">
 
-  <!-- Overview -->
-  <section class="section video" data-section="section5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 align-self-center">
-          <div class="left-content">
-            <span>centralized academic access</span>
-            <h4>Explore the <em>EMIS Central Exam Platform</em></h4>
-            <p>
-              EMIS Central Exam Portal serves as a unified landing page for digital examination access, staff recruitment, and future school-wide academic services.
-              <br><br>
-              It is designed to be modern, organized, and scalable for the evolving needs of Epitome Model Islamic Schools.
-            </p>
-            <div class="main-button">
-              <a href="{{ url_for('student_auth.student_login') }}">Go to Student Portal</a>
-            </div>
-          </div>
-        </div>
+      <div class="col-md-6 align-self-center">
+        <div class="left-content">
+          <span>centralized academic access</span>
+          <h4>Explore the <em>EMIS Central Exam Platform</em></h4>
 
-        <div class="col-md-6">
-          <article class="video-item">
-            <div class="video-caption">
-              <h4>EMIS Portal Overview</h4>
-            </div>
-            <figure>
-              <a href="{{ url_for('static', filename='images/main-thumb.png') }}" class="play">
-                <img src="{{ url_for('static', filename='images/main-thumb.png') }}" alt="EMIS Portal Overview">
-              </a>
-            </figure>
-          </article>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="section contact" data-section="section6">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h2>Contact EMIS</h2>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <form id="contact" action="#" method="post">
-            <div class="row">
-              <div class="col-md-6">
-                <fieldset>
-                  <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
-                </fieldset>
-              </div>
-
-              <div class="col-md-6">
-                <fieldset>
-                  <input name="email" type="email" class="form-control" id="email" placeholder="Your Email" required>
-                </fieldset>
-              </div>
-
-              <div class="col-md-12">
-                <fieldset>
-                  <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required></textarea>
-                </fieldset>
-              </div>
-
-              <div class="col-md-12">
-                <fieldset>
-                  <button type="submit" id="form-submit" class="button">Send Message</button>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-
-        <div class="col-md-6">
-          <div id="map">
-            <iframe
-              src="https://maps.google.com/maps?q=Abuja,%20Nigeria&t=&z=12&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="422"
-              frameborder="0"
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
           <p>
-            <i class="fa fa-copyright"></i> Copyright 2026 EMIS Central Exam Portal |
-            Designed for Epitome Model Islamic Schools
+            EMIS Central Exam Portal serves as a unified landing page for digital examination access, staff recruitment, and future school-wide academic services.
+            <br><br>
+            It is designed to be modern, organized, and scalable for the evolving needs of Epitome Model Islamic Schools.
           </p>
+
+          <div class="main-button">
+            <a href="{{ url_for('student_auth.student_login') }}">Go to Student Portal</a>
+          </div>
         </div>
       </div>
+
+      <div class="col-md-6">
+        <article class="video-item">
+          <div class="video-caption">
+            <h4>EMIS Portal Overview</h4>
+          </div>
+
+          <figure>
+            <a href="{{ url_for('static', filename='images/main-thumb.png') }}" class="play">
+              <img src="{{ url_for('static', filename='images/main-thumb.png') }}" alt="EMIS Portal Overview">
+            </a>
+          </figure>
+        </article>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Contact -->
+<section class="section contact" data-section="section6">
+  <div class="container">
+    <div class="row">
 
-  <script src="{{ url_for('static', filename='js/isotope.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/owl-carousel.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/lightbox.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/video.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/slick-slider.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h2>Contact EMIS</h2>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <form id="contact" action="#" method="post">
+          <div class="row">
+
+            <div class="col-md-6">
+              <fieldset>
+                <input name="name" type="text" class="form-control" id="name" placeholder="Your Name" required>
+              </fieldset>
+            </div>
+
+            <div class="col-md-6">
+              <fieldset>
+                <input name="email" type="email" class="form-control" id="email" placeholder="Your Email" required>
+              </fieldset>
+            </div>
+
+            <div class="col-md-12">
+              <fieldset>
+                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required></textarea>
+              </fieldset>
+            </div>
+
+            <div class="col-md-12">
+              <fieldset>
+                <button type="submit" id="form-submit" class="button">Send Message</button>
+              </fieldset>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="col-md-6">
+        <div id="map">
+          <iframe
+            src="https://maps.google.com/maps?q=Abuja,%20Nigeria&t=&z=12&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="422"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Admin Login Modal -->
+<div class="modal fade admin-login-modal" id="adminLoginModal" tabindex="-1" role="dialog" aria-labelledby="adminLoginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+    <div class="modal-content admin-modal-card">
+
+      <button type="button" class="admin-modal-close-btn" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+
+      <div class="admin-modal-top">
+        <div class="admin-modal-badge">
+          <i class="fa fa-lock"></i>
+        </div>
+
+        <span class="admin-modal-mini-title">Restricted Access</span>
+
+        <h5 class="admin-modal-title" id="adminLoginModalLabel">
+          Admin Console Login
+        </h5>
+
+        <p>
+          Enter your admin password to continue to the EMIS Central Exam administrative dashboard.
+        </p>
+      </div>
+
+      <form method="POST" action="{{ url_for('admin_auth.admin_login') }}" class="admin-modal-form" id="adminLoginForm">
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              {% if category == 'admin_error' %}
+                <div class="admin-login-alert" data-admin-error="true">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span>{{ message }}</span>
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="form-group admin-form-group">
+          <label for="admin_password">Admin Password</label>
+
+          <div class="admin-input-group">
+            <span class="admin-input-icon">
+              <i class="fa fa-key"></i>
+            </span>
+
+            <input
+              type="password"
+              name="admin_password"
+              id="admin_password"
+              class="form-control admin-password-input"
+              placeholder="Enter admin password"
+              autocomplete="current-password"
+              required
+            >
+
+            <button type="button" class="admin-password-toggle" id="adminPasswordToggle" aria-label="Show password">
+              <i class="fa fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" class="admin-modal-login-btn" id="adminLoginButton">
+          <span class="admin-login-btn-text">Login to Admin Console</span>
+          <span class="admin-login-spinner" aria-hidden="true"></span>
+        </button>
+
+        <button type="button" class="admin-modal-cancel-btn" data-dismiss="modal">
+          Cancel
+        </button>
+
+      </form>
+
+      <div class="admin-modal-footer-text">
+        <i class="fa fa-shield"></i>
+        Authorized personnel only.
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+        <p>
+          <i class="fa fa-copyright"></i> Copyright 2026 EMIS Central Exam Portal |
+          Designed for Epitome Model Islamic Schools
+        </p>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="{{ url_for('static', filename='js/isotope.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/owl-carousel.js') }}"></script>
+<script src="{{ url_for('static', filename='js/lightbox.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tabs.js') }}"></script>
+<script src="{{ url_for('static', filename='js/video.js') }}"></script>
+<script src="{{ url_for('static', filename='js/slick-slider.js') }}"></script>
+<script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin_login.js') }}"></script>
 
 </body>
 </html>

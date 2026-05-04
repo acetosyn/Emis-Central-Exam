@@ -1,0 +1,448 @@
+/*
+  EMIS Central Exam - Admin Login Modal
+  Reference style: student_login.css
+*/
+
+/* Hero Button Group */
+
+.hero-button-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.hero-button-group .scroll-to-section a {
+    display: inline-block;
+}
+
+.hero-button-group .admin-access-btn {
+    background-color: transparent;
+    border: 2px solid #f5a425;
+    color: #ffffff;
+    padding: 11px 22px;
+    border-radius: 12px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.hero-button-group .admin-access-btn:hover,
+.hero-button-group .admin-access-btn:focus {
+    background-color: #f5a425;
+    color: #ffffff;
+    text-decoration: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Quick Access Admin Link */
+
+.quick-link-admin {
+    background: rgba(245, 164, 37, 0.12);
+    border: 1px solid rgba(245, 164, 37, 0.42);
+}
+
+.quick-link-admin .quick-link-icon {
+    background-color: #f5a425;
+    color: #ffffff;
+}
+
+.quick-link-admin strong {
+    color: #162c45;
+}
+
+.quick-link-admin small {
+    color: #5c6d84;
+}
+
+/* Modal Backdrop */
+
+.admin-login-modal {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.modal-backdrop.show {
+    opacity: 0.78;
+}
+
+/* Modal Container */
+
+.admin-login-modal .modal-dialog {
+    max-width: 470px;
+}
+
+.admin-modal-card {
+    position: relative;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.92), rgba(245, 248, 252, 0.96)),
+        url("../images/contact-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    border: 1px solid rgba(206, 218, 232, 0.95);
+    border-top: 5px solid #f5a425;
+    border-radius: 22px;
+    padding: 38px 34px 26px;
+    box-shadow: 0 22px 55px rgba(20, 37, 60, 0.22);
+    overflow: hidden;
+}
+
+.admin-modal-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(245, 164, 37, 0.18), transparent 35%),
+        linear-gradient(135deg, rgba(255,255,255,0.48), rgba(227,236,247,0.52));
+    z-index: 0;
+}
+
+.admin-modal-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Close Button */
+
+.admin-modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    z-index: 3;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(22, 34, 57, 0.08);
+    color: #162c45;
+    font-size: 28px;
+    line-height: 32px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-modal-close-btn:hover,
+.admin-modal-close-btn:focus {
+    background-color: #f5a425;
+    color: #ffffff;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Modal Top */
+
+.admin-modal-top {
+    text-align: left;
+    margin-bottom: 24px;
+    padding-right: 28px;
+}
+
+.admin-modal-badge {
+    width: 56px;
+    height: 56px;
+    border-radius: 18px;
+    background-color: #162c45;
+    color: #f5a425;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 12px 28px rgba(22, 44, 69, 0.18);
+}
+
+.admin-modal-mini-title {
+    display: inline-block;
+    color: #c98509;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.admin-modal-title {
+    color: #14263d;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-modal-top p {
+    color: #43556d;
+    font-size: 14px;
+    line-height: 25px;
+    margin-bottom: 0;
+}
+
+/* Alert */
+
+.admin-login-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: rgba(220, 53, 69, 0.10);
+    border: 1px solid rgba(220, 53, 69, 0.18);
+    border-left: 5px solid #dc3545;
+    color: #a51d2a;
+    padding: 13px 14px;
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 22px;
+    margin-bottom: 20px;
+}
+
+.admin-login-alert i {
+    margin-top: 4px;
+}
+
+/* Form */
+
+.admin-modal-form {
+    width: 100%;
+}
+
+.admin-form-group {
+    margin-bottom: 22px;
+}
+
+.admin-form-group label {
+    color: #1a314b;
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.admin-input-group {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+}
+
+.admin-input-icon {
+    width: 50px;
+    min-width: 50px;
+    height: 52px;
+    background-color: #edf3fa;
+    border: 1px solid #d7e2ef;
+    color: #f5a425;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: none;
+}
+
+.admin-password-input {
+    width: 100%;
+    height: 52px;
+    background-color: #ffffff;
+    border-radius: 0;
+    border: 1px solid #d7e2ef;
+    outline: none;
+    color: #17304b;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    box-shadow: none;
+}
+
+.admin-password-input:focus {
+    outline: none;
+    box-shadow: none;
+    color: #17304b;
+    background-color: #ffffff;
+    border-color: #9dc0f7;
+}
+
+.admin-password-input::placeholder {
+    color: #8393a9;
+}
+
+.admin-password-toggle {
+    width: 50px;
+    min-width: 50px;
+    height: 52px;
+    border: 1px solid #d7e2ef;
+    border-left: none;
+    background-color: #edf3fa;
+    color: #f5a425;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.admin-password-toggle:hover,
+.admin-password-toggle:focus {
+    color: #1c4fa3;
+    background-color: #e4edf8;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Buttons */
+
+.admin-modal-login-btn {
+    position: relative;
+    width: 100%;
+    min-height: 52px;
+    background-color: #f5a425;
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 800;
+    padding: 15px 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 12px;
+    margin-top: 4px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.admin-modal-login-btn:hover,
+.admin-modal-login-btn:focus {
+    background-color: #dc9215;
+    color: #ffffff;
+    outline: none;
+    box-shadow: none;
+}
+
+.admin-modal-login-btn.is-loading {
+    background-color: #162c45;
+    color: #ffffff;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.admin-login-spinner {
+    display: none;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #ffffff;
+    border-right-color: #f5a425;
+    border-radius: 50%;
+    animation: adminOrbitSpin 0.75s linear infinite;
+}
+
+.admin-modal-login-btn.is-loading .admin-login-spinner {
+    display: inline-block;
+}
+
+.admin-modal-login-btn.is-loading .admin-login-btn-text {
+    opacity: 0.95;
+}
+
+.admin-modal-cancel-btn {
+    width: 100%;
+    background-color: transparent;
+    color: #576a83;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border: none;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.admin-modal-cancel-btn:hover,
+.admin-modal-cancel-btn:focus {
+    color: #f5a425;
+    outline: none;
+    box-shadow: none;
+}
+
+@keyframes adminOrbitSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer Text */
+
+.admin-modal-footer-text {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(206, 218, 232, 0.9);
+    text-align: center;
+    color: #576a83;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.admin-modal-footer-text i {
+    color: #f5a425;
+    margin-right: 6px;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 575px) {
+    .hero-button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-button-group .scroll-to-section a {
+        min-width: 210px;
+        text-align: center;
+    }
+
+    .admin-login-modal .modal-dialog {
+        margin: 0.75rem;
+    }
+
+    .admin-modal-card {
+        padding: 32px 20px 24px;
+        border-radius: 18px;
+    }
+
+    .admin-modal-top {
+        padding-right: 30px;
+    }
+
+    .admin-modal-title {
+        font-size: 23px;
+    }
+
+    .admin-modal-top p {
+        font-size: 13px;
+        line-height: 23px;
+    }
+
+    .admin-modal-badge {
+        width: 50px;
+        height: 50px;
+        border-radius: 16px;
+        font-size: 21px;
+    }
+
+    .admin-input-icon,
+    .admin-password-toggle {
+        width: 46px;
+        min-width: 46px;
+    }
+
+    .admin-login-spinner {
+        width: 22px;
+        height: 22px;
+    }
+}
